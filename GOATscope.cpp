@@ -1,5 +1,4 @@
 #define WIN32_LEAN_AND_MEAN
-#define _USE_MATH_DEFINES
 #include <windows.h>
 #include <cmath>
 #include <sstream>
@@ -27,5 +26,4 @@ GOATscopePlugin::GOATscopePlugin()
     LoadAirportDatabase();
     RegisterTagItemType("GOATscope Info", TAG_ITEM_GOATSCOPE);
     RegisterTagItemFunction("Open GOATscope Popup", FUNC_OPEN_POPUP);
-    DisplayUserMessage("GOATscope", "System",
-        "GOATscope v1.0.0 loaded. Click a tag item to open flight info.",
+    DisplayUserMessage("GOAT
