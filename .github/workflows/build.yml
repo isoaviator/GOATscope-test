@@ -8,12 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Extract zip
-        run: Expand-Archive -Path GOATscope.zip -DestinationPath . -Force
-
       - name: Download EuroScope SDK
         run: |
-          Invoke-WebRequest -Uri "https://github.com/pierr3/UACPlugin/raw/master/lib/include/EuroScopePlugIn.h" -OutFile "GOATscope/include/EuroScopePlugIn.h"
+          Invoke-WebRequest -Uri "https://github.com/pierr3/UACPlugin/raw/master/lib/include/EuroScopePlugIn.h" -OutFile "include/EuroScopePlugIn.h"
 
       - name: Setup MSVC
         uses: microsoft/setup-msbuild@v2
@@ -22,11 +19,10 @@ jobs:
         shell: cmd
         run: |
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
-          cd GOATscope
           cl /LD /EHsc /D WIN32 /D _USE_MATH_DEFINES /I include src/GOATscope.cpp /Fe:GOATscope.dll /link /DEF:src/GOATscope.def
 
       - name: Upload DLL
         uses: actions/upload-artifact@v4
         with:
           name: GOATscope-dll
-          path: GOATscope/GOATscope.dll
+          path: GOATscope.dll
