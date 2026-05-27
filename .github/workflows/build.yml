@@ -1,0 +1,28 @@
+name: Build GOATscope DLL
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Extract zip
+        run: Expand-Archive -Path GOATscope.zip -DestinationPath . -Force
+
+      - name: Download EuroScope SDK
+        run: |
+          Invoke-WebRequest -Uri "https://github.com/pierr3/UACPlugin/raw/master/lib/include/EuroScopePlugIn.h" -OutFile "GOATscope/include/EuroScopePlugIn.h"
+
+      - name: Build DLL
+        run: |
+          cd GOATscope
+          cl /LD /EHsc /I include src/GOATscope.cpp /Fe:GOATscope.dll /link /DEF:src/GOATscope.def
+        shell: cmd
+
+      - name: Upload DLL
+        uses: actions/upload-artifact@v3
+        with:
+          name: GOATscope-dll
+          path: GOATscope/GOATscope.dll
