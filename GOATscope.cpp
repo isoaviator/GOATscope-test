@@ -21,9 +21,4 @@ void __declspec(dllexport) EuroScopePlugInExit()
 
 GOATscopePlugin::GOATscopePlugin()
     : CPlugIn(EuroScopePlugIn::COMPATIBILITY_CODE,
-              "GOATscope", "1.0.0", "GOATscope Dev", "Free to use on VATSIM")
-{
-    LoadAirportDatabase();
-    RegisterTagItemType("GOATscope Info", TAG_ITEM_GOATSCOPE);
-    RegisterTagItemFunction("Open GOATscope Popup", FUNC_OPEN_POPUP);
-    DisplayUserMessage("GOAT
+              "GOATscope", "1.0.0", "GOATscope Dev", "Free to use
