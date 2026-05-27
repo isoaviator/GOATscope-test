@@ -8,10 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download EuroScope SDK
-        run: |
-          Invoke-WebRequest -Uri "https://github.com/pierr3/UACPlugin/raw/master/lib/include/EuroScopePlugIn.h" -OutFile "include/EuroScopePlugIn.h"
-
       - name: Setup MSVC
         uses: microsoft/setup-msbuild@v2
 
